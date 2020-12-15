@@ -38,12 +38,12 @@ namespace This_Time_It_Will_Work
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.UniqueCheckBox = new System.Windows.Forms.CheckBox();
-            this.PrimKeyCheckBox = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CreateAttrButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.CanNullCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -94,7 +94,7 @@ namespace This_Time_It_Will_Work
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(257, 254);
+            this.richTextBox1.Location = new System.Drawing.Point(258, 238);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(445, 96);
             this.richTextBox1.TabIndex = 9;
@@ -129,15 +129,6 @@ namespace This_Time_It_Will_Work
             this.UniqueCheckBox.TabIndex = 12;
             this.UniqueCheckBox.UseVisualStyleBackColor = true;
             // 
-            // PrimKeyCheckBox
-            // 
-            this.PrimKeyCheckBox.AutoSize = true;
-            this.PrimKeyCheckBox.Location = new System.Drawing.Point(465, 210);
-            this.PrimKeyCheckBox.Name = "PrimKeyCheckBox";
-            this.PrimKeyCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.PrimKeyCheckBox.TabIndex = 13;
-            this.PrimKeyCheckBox.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -152,53 +143,63 @@ namespace This_Time_It_Will_Work
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(144, 173);
+            this.label4.Location = new System.Drawing.Point(170, 173);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(179, 16);
+            this.label4.Size = new System.Drawing.Size(153, 16);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Является ли уникальным?";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(67, 208);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(256, 16);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Входит ли в состав перичного ключа?";
+            this.label4.Text = "Является уникальным";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(113, 295);
+            this.label6.Location = new System.Drawing.Point(114, 279);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 16);
             this.label6.TabIndex = 17;
             this.label6.Text = "Описание атрибута";
             // 
-            // button1
+            // CreateAttrButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(362, 356);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(222, 43);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Добавить атрибут в таблицу";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CreateAttrButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CreateAttrButton.Location = new System.Drawing.Point(363, 340);
+            this.CreateAttrButton.Name = "CreateAttrButton";
+            this.CreateAttrButton.Size = new System.Drawing.Size(222, 43);
+            this.CreateAttrButton.TabIndex = 18;
+            this.CreateAttrButton.Text = "Добавить атрибут в таблицу";
+            this.CreateAttrButton.UseVisualStyleBackColor = true;
+            this.CreateAttrButton.Click += new System.EventHandler(this.CreateAttrButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(187, 201);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(136, 16);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Может быть пустым";
+            // 
+            // CanNullCheckBox
+            // 
+            this.CanNullCheckBox.AutoSize = true;
+            this.CanNullCheckBox.Location = new System.Drawing.Point(465, 203);
+            this.CanNullCheckBox.Name = "CanNullCheckBox";
+            this.CanNullCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.CanNullCheckBox.TabIndex = 19;
+            this.CanNullCheckBox.UseVisualStyleBackColor = true;
             // 
             // AttributeAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.CanNullCheckBox);
+            this.Controls.Add(this.CreateAttrButton);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.PrimKeyCheckBox);
             this.Controls.Add(this.UniqueCheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -227,11 +228,11 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox UniqueCheckBox;
-        private System.Windows.Forms.CheckBox PrimKeyCheckBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CreateAttrButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox CanNullCheckBox;
     }
 }

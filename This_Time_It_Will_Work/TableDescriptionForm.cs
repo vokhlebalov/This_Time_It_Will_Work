@@ -52,7 +52,7 @@ namespace This_Time_It_Will_Work
             userDB.OpenConnection();
             MySqlCommand commandCreate = new MySqlCommand($@"
                     CREATE TABLE {tableName}
-                    (ID INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id))", userDB.GetConnection()) ;
+                    (ID INT NOT NULL)", userDB.GetConnection()) ;
             commandCreate.ExecuteNonQuery();
 
             DBChangeForm form = new DBChangeForm(currentDB);

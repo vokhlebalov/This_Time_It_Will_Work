@@ -12,9 +12,16 @@ namespace This_Time_It_Will_Work
 {
     public partial class QuerriesForm : Form
     {
+        public string currentDB;
         public QuerriesForm()
         {
             InitializeComponent();
+        }
+
+        public QuerriesForm(string name)
+        {
+            InitializeComponent();
+            currentDB = name;
         }
 
         private void QuerriesForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -24,7 +31,7 @@ namespace This_Time_It_Will_Work
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm();
+            MainForm form = new MainForm(currentDB);
             form.Show();
             this.Hide();
         }

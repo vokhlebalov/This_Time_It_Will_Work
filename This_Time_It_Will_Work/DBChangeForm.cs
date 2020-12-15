@@ -17,12 +17,15 @@ namespace This_Time_It_Will_Work
         public DBChangeForm()
         {
             InitializeComponent();
+            FillListTables();
         }
 
         public DBChangeForm(string name)
         {
             InitializeComponent();
             currentDB = name;
+            FillListTables();
+
         }
 
         public DBChangeForm(string name, string currentTable)
@@ -30,6 +33,7 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             currentDB = name;
             TableNameTextBox.Text = currentTable;
+            FillListTables();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -58,17 +62,18 @@ namespace This_Time_It_Will_Work
 
             mData.OpenConnection();
             
-            MySqlCommand commandIns = new MySqlCommand($"DELETE FROM `table` WHERE Name = \"{TableNameTextBox.Text}\"", mData.GetConnection());
+            MySqlCommand commandIns = new MySqlCommand($"DELETE FROM `table` WHERE Name = \"{comboBoxTables.Text}\"", mData.GetConnection());
             commandIns.ExecuteNonQuery();
 
             userDB.OpenConnection();
-            MySqlCommand commandCreate = new MySqlCommand($"DROP TABLE IF EXISTS {TableNameTextBox.Text}", userDB.GetConnection());
+            MySqlCommand commandCreate = new MySqlCommand($"DROP TABLE IF EXISTS {comboBoxTables.Text}", userDB.GetConnection());
             commandCreate.ExecuteNonQuery();
 
             DBChangeForm form = new DBChangeForm(currentDB);
             form.Show();
             this.Hide();
-            MessageBox.Show($"Таблица {TableNameTextBox.Text} успешно удалена!");
+            MessageBox.Show($"Таблица {comboBoxTables.Text} успешно удалена!");
+            FillListTables();
         }
 
         private void buttonCreateConnection_Click(object sender, EventArgs e)
@@ -81,5 +86,19 @@ namespace This_Time_It_Will_Work
 
         }
        
+        private void FillListTables()
+        {
+            DataBase db = new DataBase("prime_db");
+            db.OpenConnection();
+            MySqlCommand command = new MySqlCommand("SELECT Name FROM `table`", db.GetConnection());
+            MySqlDataReader reader = command.ExecuteReader();
+            
+            while(reader.Read())
+            {
+                comboBoxTables.Items.Add(reader.GetValue(0).ToString());
+            }
+            db.CloseConnection();
+
+        }
     }
 }

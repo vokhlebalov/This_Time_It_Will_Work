@@ -34,8 +34,8 @@ namespace This_Time_It_Will_Work
             this.TableNameTextBox = new System.Windows.Forms.TextBox();
             this.buttonDeleteTable = new System.Windows.Forms.Button();
             this.buttonCreateConnection = new System.Windows.Forms.Button();
-            this.TabelsListBox = new System.Windows.Forms.ListBox();
             this.buttonAddAttribute = new System.Windows.Forms.Button();
+            this.comboBoxTables = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -50,7 +50,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonAddTable
             // 
-            this.buttonAddTable.Location = new System.Drawing.Point(13, 99);
+            this.buttonAddTable.Location = new System.Drawing.Point(68, 103);
             this.buttonAddTable.Name = "buttonAddTable";
             this.buttonAddTable.Size = new System.Drawing.Size(108, 38);
             this.buttonAddTable.TabIndex = 2;
@@ -68,9 +68,9 @@ namespace This_Time_It_Will_Work
             // 
             // buttonDeleteTable
             // 
-            this.buttonDeleteTable.Location = new System.Drawing.Point(131, 99);
+            this.buttonDeleteTable.Location = new System.Drawing.Point(321, 103);
             this.buttonDeleteTable.Name = "buttonDeleteTable";
-            this.buttonDeleteTable.Size = new System.Drawing.Size(104, 38);
+            this.buttonDeleteTable.Size = new System.Drawing.Size(130, 38);
             this.buttonDeleteTable.TabIndex = 4;
             this.buttonDeleteTable.Text = "Удалить таблицу";
             this.buttonDeleteTable.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCreateConnection
             // 
-            this.buttonCreateConnection.Location = new System.Drawing.Point(12, 175);
+            this.buttonCreateConnection.Location = new System.Drawing.Point(12, 178);
             this.buttonCreateConnection.Name = "buttonCreateConnection";
             this.buttonCreateConnection.Size = new System.Drawing.Size(223, 41);
             this.buttonCreateConnection.TabIndex = 5;
@@ -86,31 +86,32 @@ namespace This_Time_It_Will_Work
             this.buttonCreateConnection.UseVisualStyleBackColor = true;
             this.buttonCreateConnection.Click += new System.EventHandler(this.buttonCreateConnection_Click);
             // 
-            // TabelsListBox
-            // 
-            this.TabelsListBox.FormattingEnabled = true;
-            this.TabelsListBox.Location = new System.Drawing.Point(331, 54);
-            this.TabelsListBox.Name = "TabelsListBox";
-            this.TabelsListBox.Size = new System.Drawing.Size(258, 43);
-            this.TabelsListBox.TabIndex = 6;
-            // 
             // buttonAddAttribute
             // 
             this.buttonAddAttribute.Location = new System.Drawing.Point(457, 103);
             this.buttonAddAttribute.Name = "buttonAddAttribute";
-            this.buttonAddAttribute.Size = new System.Drawing.Size(132, 34);
+            this.buttonAddAttribute.Size = new System.Drawing.Size(132, 38);
             this.buttonAddAttribute.TabIndex = 7;
             this.buttonAddAttribute.Text = "Добавить атрибут";
             this.buttonAddAttribute.UseVisualStyleBackColor = true;
             this.buttonAddAttribute.Click += new System.EventHandler(this.buttonAddAttribute_Click);
+            // 
+            // comboBoxTables
+            // 
+            this.comboBoxTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxTables.FormattingEnabled = true;
+            this.comboBoxTables.Location = new System.Drawing.Point(321, 73);
+            this.comboBoxTables.Name = "comboBoxTables";
+            this.comboBoxTables.Size = new System.Drawing.Size(268, 24);
+            this.comboBoxTables.TabIndex = 8;
             // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 345);
+            this.Controls.Add(this.comboBoxTables);
             this.Controls.Add(this.buttonAddAttribute);
-            this.Controls.Add(this.TabelsListBox);
             this.Controls.Add(this.buttonCreateConnection);
             this.Controls.Add(this.buttonDeleteTable);
             this.Controls.Add(this.TableNameTextBox);
@@ -132,7 +133,7 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.TextBox TableNameTextBox;
         private System.Windows.Forms.Button buttonDeleteTable;
         private System.Windows.Forms.Button buttonCreateConnection;
-        private System.Windows.Forms.ListBox TabelsListBox;
         private System.Windows.Forms.Button buttonAddAttribute;
+        private System.Windows.Forms.ComboBox comboBoxTables;
     }
 }

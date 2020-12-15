@@ -12,14 +12,21 @@ namespace This_Time_It_Will_Work
 {
     public partial class EntriesManipulationForm : Form
     {
+        public string currentDB;
         public EntriesManipulationForm()
         {
             InitializeComponent();
         }
 
+        public EntriesManipulationForm(string name)
+        {
+            InitializeComponent();
+            currentDB = name;
+        }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm();
+            MainForm form = new MainForm(currentDB);
             form.Show();
             this.Hide();
         }

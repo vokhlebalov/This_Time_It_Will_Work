@@ -24,6 +24,13 @@ namespace This_Time_It_Will_Work
             currentDb = name;
         }
 
+        public DBChangeForm(string name, string currentTable)
+        {
+            InitializeComponent();
+            currentDb = name;
+            TableNameTextBox.Text = currentTable;
+        }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
             MainForm form = new MainForm(currentDb);
@@ -34,6 +41,28 @@ namespace This_Time_It_Will_Work
         private void DBChangeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonAddTable_Click(object sender, EventArgs e)
+        {
+            TableDescriptionForm form = new TableDescriptionForm(currentDb, TableNameTextBox.Text);
+            form.Show();
+            this.Hide();
+        }
+
+        private void buttonDeleteTable_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCreateConnection_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAddAttribute_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

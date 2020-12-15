@@ -13,14 +13,21 @@ namespace This_Time_It_Will_Work
 {
     public partial class DBCreationFrom : Form
     {
+        public string currentDB;
         public DBCreationFrom()
         {
             InitializeComponent();
         }
 
+        public DBCreationFrom(string dbName)
+        {
+            InitializeComponent();
+            currentDB = dbName;
+        }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm();
+            MainForm form = new MainForm(currentDB);
             form.Show();
             this.Hide();
         }
@@ -32,18 +39,25 @@ namespace This_Time_It_Will_Work
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            DataBase dataBase = new DataBase("prime_db");
-            DataTable dataTable = new DataTable();
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `table`", dataBase.GetConnection());
-      
 
-            adapter.SelectCommand = command;
-            adapter.Fill(dataTable);
+            MySqlConnection con = new MySqlConnection("server=localhost;port=3306;username=root;password=root");
+            con.Open();
+            if (currentDB != null)
+            {
+                MySqlCommand com = new MySqlCommand($"DROP DATABASE IF EXISTS {currentDB}", con);
+                com.ExecuteNonQuery();
+            }
+            MySqlCommand command = new MySqlCommand($"CREATE DATABASE IF NOT EXISTS {DB_Name_TextBox.Text}", con);
+            command.ExecuteNonQuery();
+            currentDB = DB_Name_TextBox.Text;
 
-            if (dataTable.Rows.Count == 0)
-                MessageBox.Show("Подключение работает!");
-            dataBase.CloseConnection();
+            MainForm form = new MainForm(currentDB);
+            form.Show();
+            this.Hide();
+            MessageBox.Show($"База данных {currentDB} создана успешно!");
+
         }
+
+        
     }
 }

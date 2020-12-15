@@ -31,6 +31,7 @@ namespace This_Time_It_Will_Work
         {
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
+            this.DB_Name_TextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -53,11 +54,21 @@ namespace This_Time_It_Will_Work
             this.buttonCreate.UseVisualStyleBackColor = true;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
+            // DB_Name_TextBox
+            // 
+            this.DB_Name_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DB_Name_TextBox.ForeColor = System.Drawing.Color.Black;
+            this.DB_Name_TextBox.Location = new System.Drawing.Point(34, 46);
+            this.DB_Name_TextBox.Name = "DB_Name_TextBox";
+            this.DB_Name_TextBox.Size = new System.Drawing.Size(354, 29);
+            this.DB_Name_TextBox.TabIndex = 3;
+            // 
             // DBCreationFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 210);
+            this.Controls.Add(this.DB_Name_TextBox);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonBack);
             this.Name = "DBCreationFrom";
@@ -65,6 +76,7 @@ namespace This_Time_It_Will_Work
             this.Text = "DBCreationFrom";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DBCreationFrom_FormClosed);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -72,5 +84,6 @@ namespace This_Time_It_Will_Work
 
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonCreate;
+        private System.Windows.Forms.TextBox DB_Name_TextBox;
     }
 }

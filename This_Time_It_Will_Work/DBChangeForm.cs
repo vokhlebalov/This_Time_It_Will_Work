@@ -12,14 +12,21 @@ namespace This_Time_It_Will_Work
 {
     public partial class DBChangeForm : Form
     {
+        public string currentDb;
         public DBChangeForm()
         {
             InitializeComponent();
         }
 
+        public DBChangeForm(string name)
+        {
+            InitializeComponent();
+            currentDb = name;
+        }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm();
+            MainForm form = new MainForm(currentDb);
             form.Show();
             this.Hide();
         }

@@ -32,8 +32,10 @@ namespace This_Time_It_Will_Work
         {
             InitializeComponent();
             currentDB = name;
-            TableNameTextBox.Text = currentTable;
             FillListTables();
+            if (comboBoxTables.Items.Contains(currentTable))
+                comboBoxTables.Text = currentTable;
+            else TableNameTextBox.Text = currentTable;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -83,7 +85,9 @@ namespace This_Time_It_Will_Work
 
         private void buttonAddAttribute_Click(object sender, EventArgs e)
         {
-
+            AttributeAddForm form = new AttributeAddForm(currentDB, comboBoxTables.Text);
+            form.Show();
+            this.Hide();
         }
        
         private void FillListTables()

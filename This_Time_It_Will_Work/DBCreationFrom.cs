@@ -43,7 +43,6 @@ namespace This_Time_It_Will_Work
 
             if (dataTable.Rows.Count == 0)
                 MessageBox.Show("Подключение работает!");
-            dataBase.CloseConnection();
         }
     }
 }

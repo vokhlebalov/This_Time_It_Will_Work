@@ -104,5 +104,45 @@ namespace This_Time_It_Will_Work
             db.CloseConnection();
 
         }
+
+
+        private int GetTableID(string tName)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Table_ID FROM `table` WHERE Name = \"{tName}\"", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return Convert.ToInt32(reader.GetValue(0).ToString());
+
+        }
+
+        private int GetKeyValue(string attName)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Is_Key FROM `attribute` WHERE Attribute_Name = \"{attName}\"", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return Convert.ToInt32(reader.GetValue(0));
+        }
+
+        private void comboBoxTables_TextChanged(object sender, EventArgs e)
+        {
+            KeyItemsListbox.Items.Clear();
+            NonKeyItemsListbox.Items.Clear();
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Attribute_Name FROM `attribute` WHERE Table_ID = {GetTableID(comboBoxTables.Text)}", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            while (reader.Read())
+            {
+                string currAttr = reader.GetValue(0).ToString();
+                if (GetKeyValue(currAttr) == 1)
+                    KeyItemsListbox.Items.Add(currAttr);
+                else NonKeyItemsListbox.Items.Add(currAttr);
+            }
+            mData.CloseConnection();
+        }
     }
 }

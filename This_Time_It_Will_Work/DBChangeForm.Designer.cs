@@ -36,6 +36,10 @@ namespace This_Time_It_Will_Work
             this.buttonCreateConnection = new System.Windows.Forms.Button();
             this.buttonAddAttribute = new System.Windows.Forms.Button();
             this.comboBoxTables = new System.Windows.Forms.ComboBox();
+            this.NonKeyItemsListbox = new System.Windows.Forms.ListBox();
+            this.KeyItemsListbox = new System.Windows.Forms.ListBox();
+            this.ChooseAsKeyButton = new System.Windows.Forms.Button();
+            this.DropFromKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -104,12 +108,51 @@ namespace This_Time_It_Will_Work
             this.comboBoxTables.Name = "comboBoxTables";
             this.comboBoxTables.Size = new System.Drawing.Size(268, 24);
             this.comboBoxTables.TabIndex = 8;
+            this.comboBoxTables.TextChanged += new System.EventHandler(this.comboBoxTables_TextChanged);
+            // 
+            // NonKeyItemsListbox
+            // 
+            this.NonKeyItemsListbox.FormattingEnabled = true;
+            this.NonKeyItemsListbox.Location = new System.Drawing.Point(321, 178);
+            this.NonKeyItemsListbox.Name = "NonKeyItemsListbox";
+            this.NonKeyItemsListbox.Size = new System.Drawing.Size(90, 95);
+            this.NonKeyItemsListbox.TabIndex = 9;
+            // 
+            // KeyItemsListbox
+            // 
+            this.KeyItemsListbox.FormattingEnabled = true;
+            this.KeyItemsListbox.Location = new System.Drawing.Point(499, 178);
+            this.KeyItemsListbox.Name = "KeyItemsListbox";
+            this.KeyItemsListbox.Size = new System.Drawing.Size(90, 95);
+            this.KeyItemsListbox.TabIndex = 10;
+            // 
+            // ChooseAsKeyButton
+            // 
+            this.ChooseAsKeyButton.Location = new System.Drawing.Point(418, 202);
+            this.ChooseAsKeyButton.Name = "ChooseAsKeyButton";
+            this.ChooseAsKeyButton.Size = new System.Drawing.Size(75, 23);
+            this.ChooseAsKeyButton.TabIndex = 11;
+            this.ChooseAsKeyButton.Text = ">>";
+            this.ChooseAsKeyButton.UseVisualStyleBackColor = true;
+            // 
+            // DropFromKeyButton
+            // 
+            this.DropFromKeyButton.Location = new System.Drawing.Point(418, 231);
+            this.DropFromKeyButton.Name = "DropFromKeyButton";
+            this.DropFromKeyButton.Size = new System.Drawing.Size(75, 23);
+            this.DropFromKeyButton.TabIndex = 12;
+            this.DropFromKeyButton.Text = "<<";
+            this.DropFromKeyButton.UseVisualStyleBackColor = true;
             // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 345);
+            this.Controls.Add(this.DropFromKeyButton);
+            this.Controls.Add(this.ChooseAsKeyButton);
+            this.Controls.Add(this.KeyItemsListbox);
+            this.Controls.Add(this.NonKeyItemsListbox);
             this.Controls.Add(this.comboBoxTables);
             this.Controls.Add(this.buttonAddAttribute);
             this.Controls.Add(this.buttonCreateConnection);
@@ -135,5 +178,9 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Button buttonCreateConnection;
         private System.Windows.Forms.Button buttonAddAttribute;
         private System.Windows.Forms.ComboBox comboBoxTables;
+        private System.Windows.Forms.ListBox NonKeyItemsListbox;
+        private System.Windows.Forms.ListBox KeyItemsListbox;
+        private System.Windows.Forms.Button ChooseAsKeyButton;
+        private System.Windows.Forms.Button DropFromKeyButton;
     }
 }

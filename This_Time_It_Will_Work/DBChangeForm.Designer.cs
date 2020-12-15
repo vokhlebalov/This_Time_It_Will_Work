@@ -40,6 +40,9 @@ namespace This_Time_It_Will_Work
             this.KeyItemsListbox = new System.Windows.Forms.ListBox();
             this.ChooseAsKeyButton = new System.Windows.Forms.Button();
             this.DropFromKeyButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ChangeKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -134,6 +137,7 @@ namespace This_Time_It_Will_Work
             this.ChooseAsKeyButton.TabIndex = 11;
             this.ChooseAsKeyButton.Text = ">>";
             this.ChooseAsKeyButton.UseVisualStyleBackColor = true;
+            this.ChooseAsKeyButton.Click += new System.EventHandler(this.ChooseAsKeyButton_Click);
             // 
             // DropFromKeyButton
             // 
@@ -143,12 +147,46 @@ namespace This_Time_It_Will_Work
             this.DropFromKeyButton.TabIndex = 12;
             this.DropFromKeyButton.Text = "<<";
             this.DropFromKeyButton.UseVisualStyleBackColor = true;
+            this.DropFromKeyButton.Click += new System.EventHandler(this.DropFromKeyButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(318, 159);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 16);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Атрибуты таблицы";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(470, 159);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 16);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Первичный ключ";
+            // 
+            // ChangeKeyButton
+            // 
+            this.ChangeKeyButton.Location = new System.Drawing.Point(346, 279);
+            this.ChangeKeyButton.Name = "ChangeKeyButton";
+            this.ChangeKeyButton.Size = new System.Drawing.Size(223, 41);
+            this.ChangeKeyButton.TabIndex = 15;
+            this.ChangeKeyButton.Text = "Применить изменения в составе первичного ключа";
+            this.ChangeKeyButton.UseVisualStyleBackColor = true;
+            this.ChangeKeyButton.Click += new System.EventHandler(this.ChangeKeyButton_Click);
             // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 345);
+            this.Controls.Add(this.ChangeKeyButton);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.DropFromKeyButton);
             this.Controls.Add(this.ChooseAsKeyButton);
             this.Controls.Add(this.KeyItemsListbox);
@@ -182,5 +220,8 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.ListBox KeyItemsListbox;
         private System.Windows.Forms.Button ChooseAsKeyButton;
         private System.Windows.Forms.Button DropFromKeyButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ChangeKeyButton;
     }
 }

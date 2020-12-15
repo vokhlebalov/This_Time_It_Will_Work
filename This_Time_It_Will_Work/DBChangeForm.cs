@@ -144,5 +144,24 @@ namespace This_Time_It_Will_Work
             }
             mData.CloseConnection();
         }
+
+        private void ChooseAsKeyButton_Click(object sender, EventArgs e)
+        {
+            string selectedAttr = NonKeyItemsListbox.SelectedItem.ToString();
+            NonKeyItemsListbox.Items.Remove(selectedAttr);
+            KeyItemsListbox.Items.Add(selectedAttr);
+        }
+
+        private void DropFromKeyButton_Click(object sender, EventArgs e)
+        {
+            string selectedAttr = KeyItemsListbox.SelectedItem.ToString();
+            KeyItemsListbox.Items.Remove(selectedAttr);
+            NonKeyItemsListbox.Items.Add(selectedAttr);
+        }
+
+        private void ChangeKeyButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

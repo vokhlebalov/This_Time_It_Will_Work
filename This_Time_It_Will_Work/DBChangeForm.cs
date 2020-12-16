@@ -80,7 +80,9 @@ namespace This_Time_It_Will_Work
 
         private void buttonCreateConnection_Click(object sender, EventArgs e)
         {
-
+            ConnectionSetUpForm form = new ConnectionSetUpForm(currentDB);
+            form.Show();
+            this.Hide();
         }
 
         private void buttonAddAttribute_Click(object sender, EventArgs e)
@@ -161,7 +163,37 @@ namespace This_Time_It_Will_Work
 
         private void ChangeKeyButton_Click(object sender, EventArgs e)
         {
+            DataBase mData = new DataBase("prime_db");
+            DataBase userDB = new DataBase(currentDB);
 
+            string updKeyValues = "";
+
+            mData.OpenConnection();
+            userDB.OpenConnection();
+            foreach (string attr in KeyItemsListbox.Items)
+            {
+                MySqlCommand updComm = new MySqlCommand($"UPDATE `attribute` SET Is_Key = 1 WHERE Attribute_Name = \"{attr}\"", mData.GetConnection());
+                updComm.ExecuteNonQuery();
+                updKeyValues += attr + ", ";
+            }
+            foreach (string attr in NonKeyItemsListbox.Items)
+            {
+                MySqlCommand updComm = new MySqlCommand($"UPDATE `attribute` SET Is_Key = 0 WHERE Attribute_Name = \"{attr}\"", mData.GetConnection());
+                updComm.ExecuteNonQuery();
+            }
+            try
+            {
+                MySqlCommand dropKey = new MySqlCommand($"ALTER TABLE `{comboBoxTables.Text}` DROP PRIMARY KEY", userDB.GetConnection());
+                dropKey.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                //Если ключа нет - игнорируем
+            }
+            updKeyValues = updKeyValues.Remove(updKeyValues.Length - 2);
+            MySqlCommand createKey = new MySqlCommand($"ALTER TABLE `{comboBoxTables.Text}` ADD CONSTRAINT {comboBoxTables.Text}_keyValue PRIMARY KEY ({updKeyValues})", userDB.GetConnection());
+            createKey.ExecuteNonQuery();
+            MessageBox.Show($"Атрибуты: {updKeyValues} теперь составляют первичный ключ таблицы {comboBoxTables.Text}!");
         }
     }
 }

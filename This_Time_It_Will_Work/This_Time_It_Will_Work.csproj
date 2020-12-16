@@ -56,6 +56,12 @@
     <Compile Include="AttributeAddForm.Designer.cs">
       <DependentUpon>AttributeAddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectionSetUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionSetUpForm.Designer.cs">
+      <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="DBChangeForm.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,9 @@
     </Compile>
     <EmbeddedResource Include="AttributeAddForm.resx">
       <DependentUpon>AttributeAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSetUpForm.resx">
+      <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DBChangeForm.resx">
       <DependentUpon>DBChangeForm.cs</DependentUpon>

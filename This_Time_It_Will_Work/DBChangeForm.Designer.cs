@@ -43,6 +43,8 @@ namespace This_Time_It_Will_Work
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ChangeKeyButton = new System.Windows.Forms.Button();
+            this.ConnectionsListBox = new System.Windows.Forms.ListBox();
+            this.DeleteConnectionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -85,7 +87,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCreateConnection
             // 
-            this.buttonCreateConnection.Location = new System.Drawing.Point(12, 178);
+            this.buttonCreateConnection.Location = new System.Drawing.Point(677, 73);
             this.buttonCreateConnection.Name = "buttonCreateConnection";
             this.buttonCreateConnection.Size = new System.Drawing.Size(223, 41);
             this.buttonCreateConnection.TabIndex = 5;
@@ -179,11 +181,30 @@ namespace This_Time_It_Will_Work
             this.ChangeKeyButton.UseVisualStyleBackColor = true;
             this.ChangeKeyButton.Click += new System.EventHandler(this.ChangeKeyButton_Click);
             // 
+            // ConnectionsListBox
+            // 
+            this.ConnectionsListBox.FormattingEnabled = true;
+            this.ConnectionsListBox.Location = new System.Drawing.Point(677, 121);
+            this.ConnectionsListBox.Name = "ConnectionsListBox";
+            this.ConnectionsListBox.Size = new System.Drawing.Size(223, 147);
+            this.ConnectionsListBox.TabIndex = 16;
+            // 
+            // DeleteConnectionButton
+            // 
+            this.DeleteConnectionButton.Location = new System.Drawing.Point(677, 274);
+            this.DeleteConnectionButton.Name = "DeleteConnectionButton";
+            this.DeleteConnectionButton.Size = new System.Drawing.Size(223, 41);
+            this.DeleteConnectionButton.TabIndex = 17;
+            this.DeleteConnectionButton.Text = "Удалить выбранную связь";
+            this.DeleteConnectionButton.UseVisualStyleBackColor = true;
+            // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 345);
+            this.ClientSize = new System.Drawing.Size(942, 345);
+            this.Controls.Add(this.DeleteConnectionButton);
+            this.Controls.Add(this.ConnectionsListBox);
             this.Controls.Add(this.ChangeKeyButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -223,5 +244,7 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ChangeKeyButton;
+        private System.Windows.Forms.ListBox ConnectionsListBox;
+        private System.Windows.Forms.Button DeleteConnectionButton;
     }
 }

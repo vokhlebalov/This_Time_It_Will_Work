@@ -65,7 +65,7 @@ namespace This_Time_It_Will_Work
                     nextID = UnicID(table);
                 else nextID = 1;
 
-                MySqlCommand com = new MySqlCommand($"INSERT INTO `connection` (Connection_ID,Connection_Name,First_Atr_ID,Second_Atr_ID,Connection_Description) VALUES ({nextID}, \"connect{nextID}\", {GetAttrID(depAttrListBox.SelectedItem.ToString())}, {GetAttrID(refAttrListBox.SelectedItem.ToString())}, \"{richTextBox1.Text}\")", mData.GetConnection());
+                MySqlCommand com = new MySqlCommand($"INSERT INTO `connection` (Connection_ID,Connection_Name,First_Atr_ID,Second_Atr_ID,Connection_Description) VALUES ({nextID}, \"{depAttrListBox.SelectedItem}_ref\", {GetAttrID(depAttrListBox.SelectedItem.ToString())}, {GetAttrID(refAttrListBox.SelectedItem.ToString())}, \"{richTextBox1.Text}\")", mData.GetConnection());
                 com.ExecuteNonQuery();
                 MessageBox.Show("Связь успешно добавлена");
             }

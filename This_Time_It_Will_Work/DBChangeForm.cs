@@ -18,6 +18,7 @@ namespace This_Time_It_Will_Work
         {
             InitializeComponent();
             FillListTables();
+            FillListConnections();
         }
 
         public DBChangeForm(string name)
@@ -25,7 +26,7 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             currentDB = name;
             FillListTables();
-
+            FillListConnections();
         }
 
         public DBChangeForm(string name, string currentTable)
@@ -36,6 +37,7 @@ namespace This_Time_It_Will_Work
             if (comboBoxTables.Items.Contains(currentTable))
                 comboBoxTables.Text = currentTable;
             else TableNameTextBox.Text = currentTable;
+            FillListConnections();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -63,19 +65,29 @@ namespace This_Time_It_Will_Work
             DataBase userDB = new DataBase(currentDB);
 
             mData.OpenConnection();
-            
-            MySqlCommand commandIns = new MySqlCommand($"DELETE FROM `table` WHERE Name = \"{comboBoxTables.Text}\"", mData.GetConnection());
-            commandIns.ExecuteNonQuery();
+            bool flag = false;
 
-            userDB.OpenConnection();
-            MySqlCommand commandCreate = new MySqlCommand($"DROP TABLE IF EXISTS {comboBoxTables.Text}", userDB.GetConnection());
-            commandCreate.ExecuteNonQuery();
+            try
+            {
+                userDB.OpenConnection();
+                MySqlCommand commandCreate = new MySqlCommand($"DROP TABLE IF EXISTS {comboBoxTables.Text}", userDB.GetConnection());
+                commandCreate.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                flag = true;
+                MessageBox.Show($"Не получилось произвести удаление таблицы {comboBoxTables.Text}. Попробуйте сначала удалить зависимости");
+            }
 
+            if (!flag)
+            {
+                MySqlCommand commandIns = new MySqlCommand($"DELETE FROM `table` WHERE Name = \"{comboBoxTables.Text}\"", mData.GetConnection());
+                commandIns.ExecuteNonQuery();
+                MessageBox.Show($"Таблица {comboBoxTables.Text} успешно удалена!");
+            }
             DBChangeForm form = new DBChangeForm(currentDB);
             form.Show();
             this.Hide();
-            MessageBox.Show($"Таблица {comboBoxTables.Text} успешно удалена!");
-            FillListTables();
         }
 
         private void buttonCreateConnection_Click(object sender, EventArgs e)
@@ -94,6 +106,7 @@ namespace This_Time_It_Will_Work
        
         private void FillListTables()
         {
+            comboBoxTables.Items.Clear();
             DataBase db = new DataBase("prime_db");
             db.OpenConnection();
             MySqlCommand command = new MySqlCommand("SELECT Name FROM `table`", db.GetConnection());
@@ -107,6 +120,31 @@ namespace This_Time_It_Will_Work
 
         }
 
+        private void FillListConnections()
+        {
+            DataBase db = new DataBase("prime_db");
+            db.OpenConnection();
+            MySqlCommand command = new MySqlCommand($"SELECT First_Atr_ID, Second_Atr_ID FROM `connection`", db.GetConnection());
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                IDataRecord record = (IDataRecord)reader;
+                ConnectionsListBox.Items.Add($"{GetAttrName(Convert.ToInt32(record[0]))} ----> {GetAttrName(Convert.ToInt32(record[1]))}");
+            }
+            db.CloseConnection();
+
+        }
+
+        private string GetAttrName(int id)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Attribute_Name FROM `attribute` WHERE Attribute_ID = {id}", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return reader.GetValue(0).ToString();
+        }
 
         private int GetTableID(string tName)
         {

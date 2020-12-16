@@ -120,6 +120,22 @@ namespace This_Time_It_Will_Work
 
         }
 
+        private void FillListAttrs()
+        {
+            AllAttrsListBox.Items.Clear();
+            DataBase db = new DataBase("prime_db");
+            db.OpenConnection();
+            MySqlCommand command = new MySqlCommand($"SELECT Attribute_Name FROM `attribute` WHERE Table_ID = {GetTableID(comboBoxTables.Text)}", db.GetConnection());
+            MySqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                AllAttrsListBox.Items.Add(reader.GetValue(0).ToString());
+            }
+            db.CloseConnection();
+
+        }
+
         private void FillListConnections()
         {
             DataBase db = new DataBase("prime_db");
@@ -183,6 +199,7 @@ namespace This_Time_It_Will_Work
                 else NonKeyItemsListbox.Items.Add(currAttr);
             }
             mData.CloseConnection();
+            FillListAttrs();
         }
 
         private void ChooseAsKeyButton_Click(object sender, EventArgs e)
@@ -301,5 +318,36 @@ namespace This_Time_It_Will_Work
             return reader.GetValue(0).ToString();
         }
 
+        private void DeleteAttrButton_Click(object sender, EventArgs e)
+        {
+            DataBase mData = new DataBase("prime_db");
+            DataBase userDB = new DataBase(currentDB);
+            string deopAttrName = AllAttrsListBox.SelectedItem.ToString();
+            string sourceName = GetTableName(GetSourceId(deopAttrName));
+            bool flag = false;
+            mData.OpenConnection();
+            userDB.OpenConnection();
+
+            try
+            {
+                MySqlCommand altCom = new MySqlCommand($"ALTER TABLE `{sourceName}` DROP COLUMN `{deopAttrName}`", userDB.GetConnection());
+                altCom.ExecuteNonQuery();
+            }catch(MySqlException ex)
+            {
+                flag = true;
+                MessageBox.Show($"Не удалось произвести удаление атрибута {deopAttrName}");
+            }
+
+            if (!flag)
+            {
+                MySqlCommand com = new MySqlCommand($"DELETE FROM `attribute` WHERE Attribute_Name = \"{deopAttrName}\"", mData.GetConnection());
+                com.ExecuteNonQuery();
+                MessageBox.Show($"Удаление атрибута {deopAttrName} выполнено!");
+                DBChangeForm form = new DBChangeForm(currentDB);
+                form.Show();
+                this.Hide();
+            } 
+
+        }
     }
 }

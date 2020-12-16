@@ -239,6 +239,7 @@ namespace This_Time_It_Will_Work
             this.DeleteAttrButton.TabIndex = 21;
             this.DeleteAttrButton.Text = "Удалить атрибут";
             this.DeleteAttrButton.UseVisualStyleBackColor = true;
+            this.DeleteAttrButton.Click += new System.EventHandler(this.DeleteAttrButton_Click);
             // 
             // DBChangeForm
             // 

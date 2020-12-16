@@ -124,13 +124,13 @@ namespace This_Time_It_Will_Work
         {
             DataBase db = new DataBase("prime_db");
             db.OpenConnection();
-            MySqlCommand command = new MySqlCommand($"SELECT First_Atr_ID, Second_Atr_ID FROM `connection`", db.GetConnection());
+            MySqlCommand command = new MySqlCommand($"SELECT First_Atr_ID, Second_Atr_ID, Connection_ID FROM `connection`", db.GetConnection());
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 IDataRecord record = (IDataRecord)reader;
-                ConnectionsListBox.Items.Add($"{GetAttrName(Convert.ToInt32(record[0]))} ----> {GetAttrName(Convert.ToInt32(record[1]))}");
+                ConnectionsListBox.Items.Add($"{Convert.ToInt32(record[2])}   {GetAttrName(Convert.ToInt32(record[0]))} ----> {GetAttrName(Convert.ToInt32(record[1]))}");
             }
             db.CloseConnection();
 
@@ -233,5 +233,73 @@ namespace This_Time_It_Will_Work
             createKey.ExecuteNonQuery();
             MessageBox.Show($"Атрибуты: {updKeyValues} теперь составляют первичный ключ таблицы {comboBoxTables.Text}!");
         }
+
+        private void DeleteConnectionButton_Click(object sender, EventArgs e)
+        {
+            DataBase mData = new DataBase("prime_db");
+            DataBase userDate = new DataBase(currentDB);
+
+            string[] fkey = ConnectionsListBox.SelectedItem.ToString().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int connID = Convert.ToInt32(fkey[0]);
+            string connName = GetConnectionName(connID);
+            string fKeyAttrName = fkey[1];
+            string depTName = GetTableName(GetSourceId(fKeyAttrName));
+
+            mData.OpenConnection();
+            userDate.OpenConnection();
+
+            bool flag = false;
+            try
+            {
+                MySqlCommand com = new MySqlCommand($"ALTER TABLE `{depTName}` DROP FOREIGN KEY {connName}", userDate.GetConnection());
+                com.ExecuteNonQuery();
+            }catch(MySqlException ex)
+            {
+                flag = true;
+                MessageBox.Show("Не получилось удалить связь");
+            }
+
+            if(!flag)
+            {
+                MySqlCommand remEntCom = new MySqlCommand($"DELETE FROM `connection` WHERE Connection_ID = {connID}", mData.GetConnection());
+                remEntCom.ExecuteNonQuery();
+                MessageBox.Show("Удаление внешнего ключа выполнено успешно!");
+                DBChangeForm form = new DBChangeForm(currentDB);
+                form.Show();
+                this.Hide();
+            }
+
+        }
+
+        private string GetConnectionName(int id)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Connection_Name FROM `connection` WHERE Connection_ID = {id}", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return reader.GetValue(0).ToString();
+        }
+
+        private int GetSourceId(string attrName)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Table_ID FROM `attribute` WHERE Attribute_Name = \"{attrName}\"", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return Convert.ToInt32(reader.GetValue(0));
+        }
+
+        private string GetTableName(int id)
+        {
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand($"SELECT Name FROM `table` WHERE Table_ID = {id}", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+            return reader.GetValue(0).ToString();
+        }
+
     }
 }

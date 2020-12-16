@@ -32,6 +32,7 @@ namespace This_Time_It_Will_Work
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.DB_Name_TextBox = new System.Windows.Forms.TextBox();
+            this.ConnectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -63,11 +64,22 @@ namespace This_Time_It_Will_Work
             this.DB_Name_TextBox.Size = new System.Drawing.Size(354, 29);
             this.DB_Name_TextBox.TabIndex = 3;
             // 
+            // ConnectButton
+            // 
+            this.ConnectButton.Location = new System.Drawing.Point(305, 121);
+            this.ConnectButton.Name = "ConnectButton";
+            this.ConnectButton.Size = new System.Drawing.Size(113, 34);
+            this.ConnectButton.TabIndex = 4;
+            this.ConnectButton.Text = "Выбрать базу данных";
+            this.ConnectButton.UseVisualStyleBackColor = true;
+            this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
+            // 
             // DBCreationFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 210);
+            this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.DB_Name_TextBox);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonBack);
@@ -85,5 +97,6 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.TextBox DB_Name_TextBox;
+        private System.Windows.Forms.Button ConnectButton;
     }
 }

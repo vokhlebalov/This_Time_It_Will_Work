@@ -197,6 +197,7 @@ namespace This_Time_It_Will_Work
             this.DeleteConnectionButton.TabIndex = 17;
             this.DeleteConnectionButton.Text = "Удалить выбранную связь";
             this.DeleteConnectionButton.UseVisualStyleBackColor = true;
+            this.DeleteConnectionButton.Click += new System.EventHandler(this.DeleteConnectionButton_Click);
             // 
             // DBChangeForm
             // 

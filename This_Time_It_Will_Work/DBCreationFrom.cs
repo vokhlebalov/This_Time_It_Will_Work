@@ -42,14 +42,22 @@ namespace This_Time_It_Will_Work
 
             MySqlConnection con = new MySqlConnection("server=localhost;port=3306;username=root;password=root");
             con.Open();
-            if (currentDB == DB_Name_TextBox.Text)
-            {
-                MySqlCommand com = new MySqlCommand($"DROP DATABASE IF EXISTS {currentDB}", con);
-                com.ExecuteNonQuery();
-            }
+            
+            MySqlCommand com = new MySqlCommand($"DROP DATABASE IF EXISTS {DB_Name_TextBox.Text}", con);
+            com.ExecuteNonQuery();
+            
             MySqlCommand command = new MySqlCommand($"CREATE DATABASE IF NOT EXISTS {DB_Name_TextBox.Text}", con);
             command.ExecuteNonQuery();
             currentDB = DB_Name_TextBox.Text;
+
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            string[] names = { "table", "connection", "attribute" };
+            foreach (string t in names)
+            {
+                MySqlCommand del = new MySqlCommand($"DELETE FROM `{t}`", mData.GetConnection());
+                del.ExecuteNonQuery();
+            }
 
             MainForm form = new MainForm(currentDB);
             form.Show();
@@ -58,24 +66,5 @@ namespace This_Time_It_Will_Work
 
         }
 
-        private void ConnectButton_Click(object sender, EventArgs e)
-        {
-            string temp = currentDB;
-            currentDB = DB_Name_TextBox.Text;
-            DataBase testConnection = new DataBase(currentDB);
-            bool flag = false;
-
-            try
-            {
-                testConnection.OpenConnection();
-            }catch(MySqlException ex)
-            {
-                MessageBox.Show("Не удалось выполнить подключение. Попробуйте создать новую базу данных или ввести другое имя");
-                flag = true;
-            }
-            if (flag)  currentDB = temp;
-            else MessageBox.Show($"Подключение к базе данных {currentDB} выполнено успешно!"); 
-
-        }
     }
 }

@@ -187,9 +187,9 @@ namespace This_Time_It_Will_Work
 
         private void ChooseAsKeyButton_Click(object sender, EventArgs e)
         {
-            string selectedAttr = NonKeyItemsListbox.SelectedItem.ToString();
-            NonKeyItemsListbox.Items.Remove(selectedAttr);
-            KeyItemsListbox.Items.Add(selectedAttr);
+                string selectedAttr = NonKeyItemsListbox.SelectedItem.ToString();
+                NonKeyItemsListbox.Items.Remove(selectedAttr);
+                KeyItemsListbox.Items.Add(selectedAttr);
         }
 
         private void DropFromKeyButton_Click(object sender, EventArgs e)

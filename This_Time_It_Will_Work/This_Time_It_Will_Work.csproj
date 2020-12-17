@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttributeAddForm.Designer.cs">
+      <DependentUpon>AttributeAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionSetUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionSetUpForm.Designer.cs">
+      <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="DBChangeForm.cs">
       <SubType>Form</SubType>
@@ -83,6 +95,18 @@
     <Compile Include="QuerriesForm.Designer.cs">
       <DependentUpon>QuerriesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableDescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableDescriptionForm.Designer.cs">
+      <DependentUpon>TableDescriptionForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AttributeAddForm.resx">
+      <DependentUpon>AttributeAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionSetUpForm.resx">
+      <DependentUpon>ConnectionSetUpForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DBChangeForm.resx">
       <DependentUpon>DBChangeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +130,9 @@
     </Compile>
     <EmbeddedResource Include="QuerriesForm.resx">
       <DependentUpon>QuerriesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableDescriptionForm.resx">
+      <DependentUpon>TableDescriptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

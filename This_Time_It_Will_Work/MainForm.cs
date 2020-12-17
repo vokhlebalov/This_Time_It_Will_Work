@@ -16,12 +16,24 @@ namespace This_Time_It_Will_Work
         public MainForm()
         {
             InitializeComponent();
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         public MainForm(string dbName)
         {
             InitializeComponent();
             currentDB = dbName;
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         private void CreateDbButton_Click(object sender, EventArgs e)

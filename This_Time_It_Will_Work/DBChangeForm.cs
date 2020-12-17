@@ -19,6 +19,8 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             FillListTables();
             FillListConnections();
+            if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
+            if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
         }
 
         public DBChangeForm(string name)
@@ -27,6 +29,8 @@ namespace This_Time_It_Will_Work
             currentDB = name;
             FillListTables();
             FillListConnections();
+            if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
+            if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
         }
 
         public DBChangeForm(string name, string currentTable)
@@ -38,6 +42,8 @@ namespace This_Time_It_Will_Work
                 comboBoxTables.Text = currentTable;
             else TableNameTextBox.Text = currentTable;
             FillListConnections();
+            if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
+            if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -185,6 +191,14 @@ namespace This_Time_It_Will_Work
 
         private void comboBoxTables_TextChanged(object sender, EventArgs e)
         {
+            FillKeyLists();
+            FillListAttrs();
+            if (comboBoxTables.Text == "") { buttonDeleteTable.Enabled = false; buttonAddAttribute.Enabled = false; }
+            else { buttonDeleteTable.Enabled = true; buttonAddAttribute.Enabled = true; }
+        }
+
+        private void FillKeyLists()
+        {
             KeyItemsListbox.Items.Clear();
             NonKeyItemsListbox.Items.Clear();
             DataBase mData = new DataBase("prime_db");
@@ -199,7 +213,6 @@ namespace This_Time_It_Will_Work
                 else NonKeyItemsListbox.Items.Add(currAttr);
             }
             mData.CloseConnection();
-            FillListAttrs();
         }
 
         private void ChooseAsKeyButton_Click(object sender, EventArgs e)
@@ -348,6 +361,45 @@ namespace This_Time_It_Will_Work
                 this.Hide();
             } 
 
+        }
+
+        private void TableNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (TableNameTextBox.Text.Length > 7 && e.KeyChar != 8) e.Handled = true;
+            string[] names = {
+                "a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "r",
+                "s", "t", "u", "v", "w", "x", "y", "z"
+            };
+            if (!(names.Contains(e.KeyChar.ToString()) || e.KeyChar == 8)) e.Handled = true;
+        }
+
+        private void comboBoxTables_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private List<string> GetAllTableNames()
+        {
+            List<string> res = new List<string>();
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand("SELECT Name FROM `table`", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+
+            while(reader.Read())
+            {
+                res.Add(reader.GetValue(0).ToString());
+            }
+            mData.CloseConnection();
+            return res;
+        }
+
+        private void TableNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<string> allTables = GetAllTableNames();
+            if (allTables.Contains(TableNameTextBox.Text)||TableNameTextBox.Text=="") buttonAddTable.Enabled = false;
+            else buttonAddTable.Enabled = true;
         }
     }
 }

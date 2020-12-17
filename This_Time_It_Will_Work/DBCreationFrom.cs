@@ -17,12 +17,14 @@ namespace This_Time_It_Will_Work
         public DBCreationFrom()
         {
             InitializeComponent();
+            buttonCreate.Enabled = false;
         }
 
         public DBCreationFrom(string dbName)
         {
             InitializeComponent();
             currentDB = dbName;
+            buttonCreate.Enabled = false;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -66,5 +68,24 @@ namespace This_Time_It_Will_Work
 
         }
 
+        private void DB_Name_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (DB_Name_TextBox.Text == "" || DB_Name_TextBox.Text == "mysql" || DB_Name_TextBox.Text == "prime_db" || DB_Name_TextBox.Text == "sys")
+                buttonCreate.Enabled = false;
+            else buttonCreate.Enabled = true;
+        }
+
+        private void DB_Name_TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (DB_Name_TextBox.Text.Length > 7 && e.KeyChar != 8) e.Handled = true;
+            string[] names = {
+                "a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "r",
+                "s", "t", "u", "v", "w", "x", "y", "z"
+            };
+            if (!(names.Contains(e.KeyChar.ToString())||e.KeyChar==8)) e.Handled = true;
+           
+
+        }
     }
 }

@@ -49,6 +49,7 @@ namespace This_Time_It_Will_Work
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteAttrButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -63,9 +64,10 @@ namespace This_Time_It_Will_Work
             // 
             // buttonAddTable
             // 
-            this.buttonAddTable.Location = new System.Drawing.Point(67, 79);
+            this.buttonAddTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAddTable.Location = new System.Drawing.Point(50, 79);
             this.buttonAddTable.Name = "buttonAddTable";
-            this.buttonAddTable.Size = new System.Drawing.Size(108, 38);
+            this.buttonAddTable.Size = new System.Drawing.Size(148, 38);
             this.buttonAddTable.TabIndex = 2;
             this.buttonAddTable.Text = "Добавить таблицу";
             this.buttonAddTable.UseVisualStyleBackColor = true;
@@ -78,12 +80,15 @@ namespace This_Time_It_Will_Work
             this.TableNameTextBox.Name = "TableNameTextBox";
             this.TableNameTextBox.Size = new System.Drawing.Size(222, 24);
             this.TableNameTextBox.TabIndex = 3;
+            this.TableNameTextBox.TextChanged += new System.EventHandler(this.TableNameTextBox_TextChanged);
+            this.TableNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TableNameTextBox_KeyPress);
             // 
             // buttonDeleteTable
             // 
-            this.buttonDeleteTable.Location = new System.Drawing.Point(309, 128);
+            this.buttonDeleteTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDeleteTable.Location = new System.Drawing.Point(300, 128);
             this.buttonDeleteTable.Name = "buttonDeleteTable";
-            this.buttonDeleteTable.Size = new System.Drawing.Size(130, 38);
+            this.buttonDeleteTable.Size = new System.Drawing.Size(139, 38);
             this.buttonDeleteTable.TabIndex = 4;
             this.buttonDeleteTable.Text = "Удалить таблицу";
             this.buttonDeleteTable.UseVisualStyleBackColor = true;
@@ -91,6 +96,7 @@ namespace This_Time_It_Will_Work
             // 
             // buttonCreateConnection
             // 
+            this.buttonCreateConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCreateConnection.Location = new System.Drawing.Point(12, 154);
             this.buttonCreateConnection.Name = "buttonCreateConnection";
             this.buttonCreateConnection.Size = new System.Drawing.Size(223, 41);
@@ -101,9 +107,10 @@ namespace This_Time_It_Will_Work
             // 
             // buttonAddAttribute
             // 
+            this.buttonAddAttribute.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddAttribute.Location = new System.Drawing.Point(445, 128);
             this.buttonAddAttribute.Name = "buttonAddAttribute";
-            this.buttonAddAttribute.Size = new System.Drawing.Size(132, 38);
+            this.buttonAddAttribute.Size = new System.Drawing.Size(142, 38);
             this.buttonAddAttribute.TabIndex = 7;
             this.buttonAddAttribute.Text = "Добавить атрибут";
             this.buttonAddAttribute.UseVisualStyleBackColor = true;
@@ -113,26 +120,31 @@ namespace This_Time_It_Will_Work
             // 
             this.comboBoxTables.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxTables.FormattingEnabled = true;
-            this.comboBoxTables.Location = new System.Drawing.Point(309, 98);
+            this.comboBoxTables.Location = new System.Drawing.Point(300, 98);
             this.comboBoxTables.Name = "comboBoxTables";
-            this.comboBoxTables.Size = new System.Drawing.Size(268, 24);
+            this.comboBoxTables.Size = new System.Drawing.Size(287, 24);
             this.comboBoxTables.TabIndex = 8;
             this.comboBoxTables.TextChanged += new System.EventHandler(this.comboBoxTables_TextChanged);
+            this.comboBoxTables.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxTables_KeyPress);
             // 
             // NonKeyItemsListbox
             // 
+            this.NonKeyItemsListbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NonKeyItemsListbox.FormattingEnabled = true;
+            this.NonKeyItemsListbox.ItemHeight = 16;
             this.NonKeyItemsListbox.Location = new System.Drawing.Point(309, 203);
             this.NonKeyItemsListbox.Name = "NonKeyItemsListbox";
-            this.NonKeyItemsListbox.Size = new System.Drawing.Size(90, 95);
+            this.NonKeyItemsListbox.Size = new System.Drawing.Size(90, 84);
             this.NonKeyItemsListbox.TabIndex = 9;
             // 
             // KeyItemsListbox
             // 
+            this.KeyItemsListbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.KeyItemsListbox.FormattingEnabled = true;
+            this.KeyItemsListbox.ItemHeight = 16;
             this.KeyItemsListbox.Location = new System.Drawing.Point(487, 203);
             this.KeyItemsListbox.Name = "KeyItemsListbox";
-            this.KeyItemsListbox.Size = new System.Drawing.Size(90, 95);
+            this.KeyItemsListbox.Size = new System.Drawing.Size(90, 84);
             this.KeyItemsListbox.TabIndex = 10;
             // 
             // ChooseAsKeyButton
@@ -177,6 +189,7 @@ namespace This_Time_It_Will_Work
             // 
             // ChangeKeyButton
             // 
+            this.ChangeKeyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ChangeKeyButton.Location = new System.Drawing.Point(334, 304);
             this.ChangeKeyButton.Name = "ChangeKeyButton";
             this.ChangeKeyButton.Size = new System.Drawing.Size(223, 41);
@@ -187,15 +200,18 @@ namespace This_Time_It_Will_Work
             // 
             // ConnectionsListBox
             // 
+            this.ConnectionsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ConnectionsListBox.FormattingEnabled = true;
-            this.ConnectionsListBox.Location = new System.Drawing.Point(12, 202);
+            this.ConnectionsListBox.ItemHeight = 16;
+            this.ConnectionsListBox.Location = new System.Drawing.Point(12, 237);
             this.ConnectionsListBox.Name = "ConnectionsListBox";
-            this.ConnectionsListBox.Size = new System.Drawing.Size(223, 147);
+            this.ConnectionsListBox.Size = new System.Drawing.Size(223, 132);
             this.ConnectionsListBox.TabIndex = 16;
             // 
             // DeleteConnectionButton
             // 
-            this.DeleteConnectionButton.Location = new System.Drawing.Point(12, 355);
+            this.DeleteConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DeleteConnectionButton.Location = new System.Drawing.Point(12, 375);
             this.DeleteConnectionButton.Name = "DeleteConnectionButton";
             this.DeleteConnectionButton.Size = new System.Drawing.Size(223, 41);
             this.DeleteConnectionButton.TabIndex = 17;
@@ -205,10 +221,12 @@ namespace This_Time_It_Will_Work
             // 
             // AllAttrsListBox
             // 
+            this.AllAttrsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AllAttrsListBox.FormattingEnabled = true;
+            this.AllAttrsListBox.ItemHeight = 16;
             this.AllAttrsListBox.Location = new System.Drawing.Point(647, 98);
             this.AllAttrsListBox.Name = "AllAttrsListBox";
-            this.AllAttrsListBox.Size = new System.Drawing.Size(235, 199);
+            this.AllAttrsListBox.Size = new System.Drawing.Size(235, 196);
             this.AllAttrsListBox.TabIndex = 18;
             // 
             // label3
@@ -233,6 +251,7 @@ namespace This_Time_It_Will_Work
             // 
             // DeleteAttrButton
             // 
+            this.DeleteAttrButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeleteAttrButton.Location = new System.Drawing.Point(647, 303);
             this.DeleteAttrButton.Name = "DeleteAttrButton";
             this.DeleteAttrButton.Size = new System.Drawing.Size(235, 41);
@@ -241,11 +260,22 @@ namespace This_Time_It_Will_Work
             this.DeleteAttrButton.UseVisualStyleBackColor = true;
             this.DeleteAttrButton.Click += new System.EventHandler(this.DeleteAttrButton_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(71, 218);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 16);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Список связей";
+            // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 504);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.DeleteAttrButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -297,5 +327,6 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button DeleteAttrButton;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -136,6 +136,7 @@ namespace This_Time_It_Will_Work
             this.NonKeyItemsListbox.Name = "NonKeyItemsListbox";
             this.NonKeyItemsListbox.Size = new System.Drawing.Size(90, 84);
             this.NonKeyItemsListbox.TabIndex = 9;
+            this.NonKeyItemsListbox.SelectedIndexChanged += new System.EventHandler(this.NonKeyItemsListbox_SelectedIndexChanged);
             // 
             // KeyItemsListbox
             // 
@@ -146,6 +147,7 @@ namespace This_Time_It_Will_Work
             this.KeyItemsListbox.Name = "KeyItemsListbox";
             this.KeyItemsListbox.Size = new System.Drawing.Size(90, 84);
             this.KeyItemsListbox.TabIndex = 10;
+            this.KeyItemsListbox.SelectedIndexChanged += new System.EventHandler(this.KeyItemsListbox_SelectedIndexChanged);
             // 
             // ChooseAsKeyButton
             // 

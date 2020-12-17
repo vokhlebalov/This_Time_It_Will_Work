@@ -21,6 +21,7 @@ namespace This_Time_It_Will_Work
             FillListConnections();
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
+            KeyButtonsCheck();
         }
 
         public DBChangeForm(string name)
@@ -31,6 +32,7 @@ namespace This_Time_It_Will_Work
             FillListConnections();
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
+            KeyButtonsCheck();
         }
 
         public DBChangeForm(string name, string currentTable)
@@ -44,6 +46,7 @@ namespace This_Time_It_Will_Work
             FillListConnections();
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
+            KeyButtonsCheck();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -217,9 +220,10 @@ namespace This_Time_It_Will_Work
 
         private void ChooseAsKeyButton_Click(object sender, EventArgs e)
         {
-                string selectedAttr = NonKeyItemsListbox.SelectedItem.ToString();
-                NonKeyItemsListbox.Items.Remove(selectedAttr);
-                KeyItemsListbox.Items.Add(selectedAttr);
+            string selectedAttr = NonKeyItemsListbox.SelectedItem.ToString();
+            NonKeyItemsListbox.Items.Remove(selectedAttr);
+            KeyItemsListbox.Items.Add(selectedAttr);
+            KeyChangeButtonCheck();
         }
 
         private void DropFromKeyButton_Click(object sender, EventArgs e)
@@ -227,6 +231,7 @@ namespace This_Time_It_Will_Work
             string selectedAttr = KeyItemsListbox.SelectedItem.ToString();
             KeyItemsListbox.Items.Remove(selectedAttr);
             NonKeyItemsListbox.Items.Add(selectedAttr);
+            KeyChangeButtonCheck();
         }
 
         private void ChangeKeyButton_Click(object sender, EventArgs e)
@@ -400,6 +405,33 @@ namespace This_Time_It_Will_Work
             List<string> allTables = GetAllTableNames();
             if (allTables.Contains(TableNameTextBox.Text)||TableNameTextBox.Text=="") buttonAddTable.Enabled = false;
             else buttonAddTable.Enabled = true;
+        }
+
+        private void NonKeyItemsListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (NonKeyItemsListbox.SelectedItem == null) ChooseAsKeyButton.Enabled = false;
+            else ChooseAsKeyButton.Enabled = true;
+        }
+
+        private void KeyItemsListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (KeyItemsListbox.SelectedItem == null) DropFromKeyButton.Enabled = false;
+            else DropFromKeyButton.Enabled = true;
+        }
+
+        private void KeyChangeButtonCheck()
+        {
+            if (KeyItemsListbox.Items.Count == 0) ChangeKeyButton.Enabled = false;
+            else ChangeKeyButton.Enabled = true;
+        }
+
+        private void KeyButtonsCheck()
+        {
+            if (NonKeyItemsListbox.SelectedItem == null) ChooseAsKeyButton.Enabled = false;
+            if (KeyItemsListbox.SelectedItem == null) DropFromKeyButton.Enabled = false;
+            if (KeyItemsListbox.Items.Count == 0) ChangeKeyButton.Enabled = false;
         }
     }
 }

@@ -22,6 +22,8 @@ namespace This_Time_It_Will_Work
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
             KeyButtonsCheck();
+            if (AllAttrsListBox.SelectedItem == null) DeleteAttrButton.Enabled = false;
+            if (ConnectionsListBox.SelectedItem == null) DeleteConnectionButton.Enabled = false;
         }
 
         public DBChangeForm(string name)
@@ -33,6 +35,8 @@ namespace This_Time_It_Will_Work
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
             KeyButtonsCheck();
+            if (AllAttrsListBox.SelectedItem == null) DeleteAttrButton.Enabled = false;
+            if (ConnectionsListBox.SelectedItem == null) DeleteConnectionButton.Enabled = false;
         }
 
         public DBChangeForm(string name, string currentTable)
@@ -47,6 +51,8 @@ namespace This_Time_It_Will_Work
             if (TableNameTextBox.Text == "") buttonAddTable.Enabled = false;
             if (comboBoxTables.Text == "") { buttonAddAttribute.Enabled = false; buttonDeleteTable.Enabled = false; }
             KeyButtonsCheck();
+            if (AllAttrsListBox.SelectedItem == null) DeleteAttrButton.Enabled = false;
+            if (ConnectionsListBox.SelectedItem == null) DeleteConnectionButton.Enabled = false;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -198,6 +204,7 @@ namespace This_Time_It_Will_Work
             FillListAttrs();
             if (comboBoxTables.Text == "") { buttonDeleteTable.Enabled = false; buttonAddAttribute.Enabled = false; }
             else { buttonDeleteTable.Enabled = true; buttonAddAttribute.Enabled = true; }
+            if (AllAttrsListBox.SelectedItem == null) DeleteAttrButton.Enabled = false;
         }
 
         private void FillKeyLists()
@@ -432,6 +439,18 @@ namespace This_Time_It_Will_Work
             if (NonKeyItemsListbox.SelectedItem == null) ChooseAsKeyButton.Enabled = false;
             if (KeyItemsListbox.SelectedItem == null) DropFromKeyButton.Enabled = false;
             if (KeyItemsListbox.Items.Count == 0) ChangeKeyButton.Enabled = false;
+        }
+
+        private void AllAttrsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (AllAttrsListBox.SelectedItem == null) DeleteAttrButton.Enabled = false;
+            else DeleteAttrButton.Enabled = true;
+        }
+
+        private void ConnectionsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ConnectionsListBox.SelectedItem == null) DeleteConnectionButton.Enabled = false;
+            else DeleteConnectionButton.Enabled = true;
         }
     }
 }

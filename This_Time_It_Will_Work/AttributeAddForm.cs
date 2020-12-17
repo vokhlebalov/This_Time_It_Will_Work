@@ -27,6 +27,7 @@ namespace This_Time_It_Will_Work
             currentDB = db;
             tableName = n;
             InfoLabel.Text = $"Новый атрибут таблицы {tableName}:";
+            CheckAttrParams();
         }
 
         private void AttributeAddForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -134,6 +135,55 @@ namespace This_Time_It_Will_Work
         {
             int max_value = Convert.ToInt32(table.Select("Attribute_ID = MAX(Attribute_ID)")[0][0].ToString());
             return max_value + 1;
+        }
+
+        private void TypescomboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void TypescomboBox_TextChanged(object sender, EventArgs e)
+        {
+            CheckAttrParams();
+        }
+
+        private void CheckAttrParams()
+        {
+            List<string> attrs = GetAllAttrs();
+            if (AttrNametextBox.Text == "" || attrs.Contains(AttrNametextBox.Text) || TypescomboBox.Text == "") CreateAttrButton.Enabled = false;
+            else CreateAttrButton.Enabled = true;
+        }
+
+        private List<string> GetAllAttrs()
+        {
+            List<string> res = new List<string>();
+            DataBase mData = new DataBase("prime_db");
+            mData.OpenConnection();
+            MySqlCommand com = new MySqlCommand("SELECT Attribute_Name FROM `attribute`", mData.GetConnection());
+            MySqlDataReader reader = com.ExecuteReader();
+
+            while (reader.Read())
+            {
+                res.Add(reader.GetValue(0).ToString());
+            }
+            mData.CloseConnection();
+            return res;
+        }
+
+        private void AttrNametextBox_TextChanged(object sender, EventArgs e)
+        {
+            CheckAttrParams();
+        }
+
+        private void AttrNametextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (AttrNametextBox.Text.Length > 7 && e.KeyChar != 8) e.Handled = true;
+            string[] names = {
+                "a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "r",
+                "s", "t", "u", "v", "w", "x", "y", "z"
+            };
+            if (!(names.Contains(e.KeyChar.ToString()) || e.KeyChar == 8)) e.Handled = true;
         }
     }
 }

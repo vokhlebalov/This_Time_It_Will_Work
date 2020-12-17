@@ -62,9 +62,9 @@ namespace This_Time_It_Will_Work
             this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.InfoLabel.Location = new System.Drawing.Point(12, 9);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(46, 18);
+            this.InfoLabel.Size = new System.Drawing.Size(191, 18);
             this.InfoLabel.TabIndex = 1;
-            this.InfoLabel.Text = "label1";
+            this.InfoLabel.Text = "Новый атрибут таблицы X";
             // 
             // AttrNametextBox
             // 
@@ -72,6 +72,8 @@ namespace This_Time_It_Will_Work
             this.AttrNametextBox.Name = "AttrNametextBox";
             this.AttrNametextBox.Size = new System.Drawing.Size(293, 20);
             this.AttrNametextBox.TabIndex = 2;
+            this.AttrNametextBox.TextChanged += new System.EventHandler(this.AttrNametextBox_TextChanged);
+            this.AttrNametextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttrNametextBox_KeyPress);
             // 
             // TypescomboBox
             // 
@@ -84,6 +86,8 @@ namespace This_Time_It_Will_Work
             this.TypescomboBox.Name = "TypescomboBox";
             this.TypescomboBox.Size = new System.Drawing.Size(293, 21);
             this.TypescomboBox.TabIndex = 3;
+            this.TypescomboBox.TextChanged += new System.EventHandler(this.TypescomboBox_TextChanged);
+            this.TypescomboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TypescomboBox_KeyPress);
             // 
             // StartValueTextBox
             // 

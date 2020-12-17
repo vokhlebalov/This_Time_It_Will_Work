@@ -50,6 +50,7 @@ namespace This_Time_It_Will_Work
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteAttrButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -209,6 +210,7 @@ namespace This_Time_It_Will_Work
             this.ConnectionsListBox.Name = "ConnectionsListBox";
             this.ConnectionsListBox.Size = new System.Drawing.Size(223, 132);
             this.ConnectionsListBox.TabIndex = 16;
+            this.ConnectionsListBox.SelectedIndexChanged += new System.EventHandler(this.ConnectionsListBox_SelectedIndexChanged);
             // 
             // DeleteConnectionButton
             // 
@@ -230,6 +232,7 @@ namespace This_Time_It_Will_Work
             this.AllAttrsListBox.Name = "AllAttrsListBox";
             this.AllAttrsListBox.Size = new System.Drawing.Size(235, 196);
             this.AllAttrsListBox.TabIndex = 18;
+            this.AllAttrsListBox.SelectedIndexChanged += new System.EventHandler(this.AllAttrsListBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -272,11 +275,22 @@ namespace This_Time_It_Will_Work
             this.label5.TabIndex = 22;
             this.label5.Text = "Список связей";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(27, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(193, 16);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Задайте имя новой таблицы";
+            // 
             // DBChangeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 504);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DeleteAttrButton);
             this.Controls.Add(this.label4);
@@ -330,5 +344,6 @@ namespace This_Time_It_Will_Work
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button DeleteAttrButton;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -18,6 +18,7 @@ namespace This_Time_It_Will_Work
         public ConnectionSetUpForm()
         {
             InitializeComponent();
+            CheckAttrsSelection();
         }
 
         public ConnectionSetUpForm(string db)
@@ -25,6 +26,7 @@ namespace This_Time_It_Will_Work
             InitializeComponent();
             currentDB = db;
             FillListTables();
+            CheckAttrsSelection();
         }
 
         private void ConnectionSetUpForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -86,6 +88,7 @@ namespace This_Time_It_Will_Work
                 depAttrListBox.Items.Add(reader.GetValue(0).ToString());
             }
             mData.CloseConnection();
+            CheckAttrsSelection();
         }
 
         private void refTableComboBox_TextChanged(object sender, EventArgs e)
@@ -100,6 +103,7 @@ namespace This_Time_It_Will_Work
                 refAttrListBox.Items.Add(reader.GetValue(0).ToString());
             }
             mData.CloseConnection();
+            CheckAttrsSelection();
         }
         private void FillListTables()
         {
@@ -156,6 +160,32 @@ namespace This_Time_It_Will_Work
         {
             int max_value = Convert.ToInt32(table.Select("Connection_ID = MAX(Connection_ID)")[0][0].ToString());
             return max_value + 1;
+        }
+
+        private void depTableComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void refTableComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void depAttrListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckAttrsSelection();
+        }
+
+        private void refAttrListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckAttrsSelection();
+        }
+
+        private void CheckAttrsSelection()
+        {
+            if (depTableComboBox.Text == refTableComboBox.Text || depAttrListBox.SelectedItem == null || refAttrListBox.SelectedItem == null) CreateConnectionButton.Enabled = false;
+            else CreateConnectionButton.Enabled = true;
         }
     }
 }

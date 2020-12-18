@@ -1,4 +1,5 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +17,34 @@ namespace This_Time_It_Will_Work
         public MainForm()
         {
             InitializeComponent();
+            currentDB = "user_db";
+            try
+            {
+                DataBase db = new DataBase(currentDB);
+                db.OpenConnection();
+            }
+            catch(MySqlException ex)
+            {
+                currentDB = null;
+            }
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         public MainForm(string dbName)
         {
             InitializeComponent();
             currentDB = dbName;
+            if (currentDB == null)
+            {
+                buttonChangeDB.Enabled = false;
+                buttonEntries.Enabled = false;
+                buttonQueries.Enabled = false;
+            }
         }
 
         private void CreateDbButton_Click(object sender, EventArgs e)

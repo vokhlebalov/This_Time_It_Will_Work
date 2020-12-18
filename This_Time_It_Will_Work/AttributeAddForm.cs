@@ -100,32 +100,36 @@ namespace This_Time_It_Will_Work
             }
             #endregion
 
-            try
+            if (strValue != "")
             {
-                userDB.OpenConnection();
-                switch (type)
+                try
                 {
-                    case ("Int"):
-                        {
-                            MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT {strValue} ", userDB.GetConnection());
-                            defCom.ExecuteNonQuery();
-                            break;
-                        }
-                    default:
-                        {
-                            MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT '{strValue}' ", userDB.GetConnection());
-                            defCom.ExecuteNonQuery();
-                            break;
-                        }
+                    userDB.OpenConnection();
+                    switch (type)
+                    {
+                        case ("Int"):
+                            {
+                                MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT {strValue} ", userDB.GetConnection());
+                                defCom.ExecuteNonQuery();
+                                break;
+                            }
+                        default:
+                            {
+                                MySqlCommand defCom = new MySqlCommand($"ALTER TABLE `{tableName}` ALTER COLUMN `{attrName}` SET DEFAULT '{strValue}' ", userDB.GetConnection());
+                                defCom.ExecuteNonQuery();
+                                break;
+                            }
+                    }
+
                 }
-                
-            }catch(MySqlException ex)
-            {
-                MessageBox.Show($"Значение по умолчанию введено некорректно. Атрибут {attrName} добавлен без значения по умолчанию.") ;
-                DBChangeForm tform = new DBChangeForm(currentDB, tableName);
-                tform.Show();
-                this.Hide();
-                return;
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Значение по умолчанию введено некорректно. Атрибут {attrName} добавлен без значения по умолчанию.");
+                    DBChangeForm tform = new DBChangeForm(currentDB, tableName);
+                    tform.Show();
+                    this.Hide();
+                    return;
+                }
             }
 
             DBChangeForm form = new DBChangeForm(currentDB, tableName);

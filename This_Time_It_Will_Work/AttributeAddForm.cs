@@ -91,7 +91,7 @@ namespace This_Time_It_Will_Work
 
             try
             {
-                altCom = new MySqlCommand($"ALTER TABLE `{tableName}` DROP COLUMN `ID`", userDB.GetConnection());
+                altCom = new MySqlCommand($"ALTER TABLE `{tableName}` DROP COLUMN `I_D`", userDB.GetConnection());
                 altCom.ExecuteNonQuery();
             }
             catch (MySqlException ex)
@@ -178,7 +178,7 @@ namespace This_Time_It_Will_Work
         private void CheckAttrParams()
         {
             List<string> attrs = GetAllAttrs();
-            if (AttrNametextBox.Text == "" || attrs.Contains(AttrNametextBox.Text) || TypescomboBox.Text == "" || AttrNametextBox.Text == "id") CreateAttrButton.Enabled = false;
+            if (AttrNametextBox.Text == "" || attrs.Contains(AttrNametextBox.Text) || TypescomboBox.Text == "" || AttrNametextBox.Text == "i_d") CreateAttrButton.Enabled = false;
             else CreateAttrButton.Enabled = true;
         }
 
